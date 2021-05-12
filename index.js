@@ -25,7 +25,7 @@ const studentSchema = new Schema({
 const Student = mongoose.model("Student", studentSchema);
 
 //GET request to fetch the students in the database.
-app.get("/students", (req, res) => {
+app.get("/", (req, res) => {
     Student.find({}, (err, students) => {
         if(err) return res.status(500).json({ err })
         else return res.status(200).json({ students })
