@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const app = express();
 const { Schema } = mongoose;
 const connectionString = "mongodb://localhost:27017/studentdb"
-const port = process.env.PORT || 5000
+
+
 app.use(express.json());
 
 // connect to database
@@ -86,9 +87,6 @@ app.put("/students/:id", (req, res) => {
 })
 
 
+const port = 4000
 
-
-app.listen(port, (err) =>{
-    if(err) console.log(err)
-    else console.log(`Server is running on ${port}`)
-})
+app.listen(port)
