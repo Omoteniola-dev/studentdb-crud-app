@@ -3,7 +3,7 @@ const Student = require("./models/student")
 const studentRoutes = require("./routes/studentRoutes")
 const app = express();
 const dbSetup = require("./database/setup")
-const port = 4000
+const port = process.env.PORT || 5000
 //SETUP mongoose
 
 
