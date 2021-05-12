@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const app = express();
 const { Schema } = mongoose;
 const connectionString = "mongodb://localhost:27017/studentdb"
-const port = process.env.PORT || 7000
+const port = process.env.PORT || 5000
 app.use(express.json());
 
 // connect to database
@@ -23,10 +23,6 @@ const studentSchema = new Schema({
 })
 
 const Student = mongoose.model("Student", studentSchema);
-
-app.get("*", (req, res) => {
-    res.send("404 page")
-})
 
 app.get("/", (req, res) => {
     res.send("Welcome to a Nodejs app")
