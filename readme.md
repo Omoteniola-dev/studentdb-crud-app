@@ -9,7 +9,7 @@ https://studentdb-crud-app.herokuapp.com/
 # Routes
 
 # GET request to preview the url
-router.get("/", dbCtrl.welcome)
+### router.get("/", dbCtrl.welcome)
     parameters: 
         endpoint
         callback function
