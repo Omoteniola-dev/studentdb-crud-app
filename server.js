@@ -40,10 +40,11 @@ app.get("/students", (req, res) => {
 // GET request to fetch student by id
 app.get("/students/:id", (req, res) => {
     Student.findById({_id: req.params.id}, (err, student) => {
-        if(err) return res.status(500).json({ message: err })
+        if(err) return res.status(500).json({ message: "ID does not exist", err})
         else return res.status(200).json({ student })
     })
-})
+    }
+)
 
 //POST request to add a new student.
 app.post("/students", (req, res) => {
@@ -89,4 +90,7 @@ app.put("/students/:id", (req, res) => {
 
 const port = 4000
 
-app.listen(port)
+app.listen(port, (err) => {
+    if(err) console.log(err)
+    else console.log(`Server running at port ${port}`)
+})
