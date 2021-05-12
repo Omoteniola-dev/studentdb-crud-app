@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const connectionString = "mongodb://localhost:27017/studentdb"
+const connectionString = "mongodb+srv://devten10la:devten10la@studentcluster.qxb3g.mongodb.net/students?retryWrites=true&w=majority"
 
 // connect to database
 module.exports = function () {
