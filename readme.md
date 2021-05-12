@@ -7,7 +7,8 @@ https://github.com/Omoteniola-dev/studentdb-crud-app
 https://studentdb-crud-app.herokuapp.com/
 
 # Routes
-## GET request to preview the url
+
+# GET request to preview the url
 router.get("/", dbCtrl.welcome)
     parameters: 
         endpoint
@@ -16,7 +17,7 @@ router.get("/", dbCtrl.welcome)
         Text
 
 # GET request to fetch the students in the database.
-router.get("/students", dbCtrl.fetchStudents)
+### router.get("/students", dbCtrl.fetchStudents)
     parameters:
         endpoint,
         callback function
@@ -24,31 +25,31 @@ router.get("/students", dbCtrl.fetchStudents)
         Object
 
 # GET request to fetch student by id
-router.get("/students/:id", dbCtrl.fetchStudentsByID)
+### router.get("/students/:id", dbCtrl.fetchStudentsByID)
     parameters:
         endpoint,
         callback function
     returns:
         Object
 
-# request to add a new student.
-router.post("/students", dbCtrl.createNewStudent)
+# POST request to add a new student.
+### router.post("/students", dbCtrl.createNewStudent)
     parameters:
         endpoint,
         callback function
     returns:
-        Object
+        Object || error message
 
 # DELETE request to clear the database
-router.delete("/students", dbCtrl.deleteAllStudents)
+### router.delete("/students", dbCtrl.deleteAllStudents)
     parameters:
         endpoint,
         callback function
     returns:
-        Text
+        Text || error message
 
 # DELETE request to delete student by id
-router.delete("/students/:id", dbCtrl.deleteStudentById)
+### router.delete("/students/:id", dbCtrl.deleteStudentById)
     parameters:
         endpoint,
         callback function
