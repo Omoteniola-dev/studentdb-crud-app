@@ -1,7 +1,7 @@
 const Student = require("../models/student")
 
 exports.welcome = function (req, res) {
-    if (res.status === 200) return res.send("Welcome to a Nodejs app")
+    return res.status(200).json({ message: "Welcome to a Nodejs app"})
 }
 
 exports.fetchStudents = function (req, res) {
