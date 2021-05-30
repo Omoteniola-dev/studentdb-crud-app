@@ -6,8 +6,6 @@ const dbSetup = require("./database/setup")
 const port = process.env.PORT || 5000
 //SETUP mongoose
 
-
-
 app.use(express.json());
 
 dbSetup()
