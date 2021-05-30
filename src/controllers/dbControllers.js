@@ -20,7 +20,9 @@ exports.fetchStudentsByID = function (req, res) {
 
 exports.createNewStudent = function (req, res) {
     //create a new student data and save to database
-    Student.create({
+    if (Student.findOne({name: req.body.name}) !== []) return res.status(200).json({ message: "Student already exists"});
+    else{
+        Student.create({
         name: req.body.name,
         email: req.body.email,
         country: req.body.country
@@ -30,6 +32,8 @@ exports.createNewStudent = function (req, res) {
             return res.status(200).json({ message: "new student added", newStudent })
         }
     })
+    }
+    
 }
 
 exports.deleteStudentById = function (req, res) {
