@@ -1,29 +1,29 @@
 const express = require("express")
 const router = express.Router()
-const dbCtrl = require("../controllers/dbControllers")
+const { welcome, fetchStudents, fetchStudentsByID, createNewStudent, deleteAllStudents, deleteStudentById, updateStudentById } = require("../controllers/dbControllers")
 
-
-router.get("/", dbCtrl.welcome)
+// Welcome message
+router.get("/", welcome)
 
 //GET request to fetch the students in the database.
-router.get("/students", dbCtrl.fetchStudents)
+router.get("/students", fetchStudents)
 
 // GET request to fetch student by id
-router.get("/students/:id", dbCtrl.fetchStudentsByID)
+router.get("/students/:id", fetchStudentsByID)
 
 //POST request to add a new student.
-router.post("/students", dbCtrl.createNewStudent)
+router.post("/students", createNewStudent)
 
 
 // DELETE request to clear the database
-router.delete("/students", dbCtrl.deleteAllStudents)
+router.delete("/students", deleteAllStudents)
 
 
 //DELETE request to delete student by id
-router.delete("/students/:id", dbCtrl.deleteStudentById)
+router.delete("/students/:id", deleteStudentById)
 
 // PUT request to update the data created by ID
-router.put("/students/:id", dbCtrl.updateStudentById)
+router.put("/students/:id", updateStudentById)
 
 module.exports = router;
 
