@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/user");
 const { decodeToken } = require("../services/jwtService");
 const secret = process.env.JWT_SECRET;
 
@@ -21,8 +22,4 @@ exports.authenticateUser = (req, res, next) => {
     //check if valid
     if (!token) return res.status(401).json({ message: "Invalid authorization token. Please login."})
     else return decodedToken;
-}
-
-exports.checkIfAdmin = (req, res, next) => {
-    
-}
+};
