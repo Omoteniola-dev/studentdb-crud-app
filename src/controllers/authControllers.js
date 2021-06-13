@@ -1,8 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const secret = process.env.JWT_SECRET;
-const expiry = process.env.EXPIRY;
+const { createToken } = require("../services/jwtService");
+
 
 // create a new user
 exports.createNewUser = async (req, res) =>{
@@ -26,16 +25,10 @@ exports.createNewUser = async (req, res) =>{
         newUser.password = hashedPassword;
         const savedUser = await newUser.save();
         // Create a JWT
-        const token = await jwt.sign({ 
-            firstname: savedUser.firstname,
-            lastname: savedUser.lastname,
-            username: savedUser.username
-        },
-        secret, {expiresIn: expiry});
-
+        let token = createToken(savedUser);
         //send token to user
         if(!token) return res.status(500).json({ message: "Sorry, we could not authenticate you. Please login"});
-        else return res.status(200).json({ message: "user registration successful", token});
+        else return res.status(200).json({ message: "New user created", token });
 
     }
     catch(err){
@@ -55,19 +48,13 @@ exports.loginUser = (req, res) => {
         let match = bcrypt.compare(req.body.password, foundUser.password);
         if(!match) return res.status(500).json({ message: "Incorrect password"});
 
-        // create JWT for foundUser.
-        jwt.sign({
-            firstname: foundUser.firstname,
-            lastname: foundUser.lastname,
-            username: foundUser.username
-        },
-        secret, {expiresIn: expiry}, (err, token) => {
-            if (err) return res.status(500).json({ message: err });
 
-            //send token to user
-            if(!token) return res.status(500).json({ message: err })
-            else return res.status(200).json({ message: "login successful", token})
-        });
+        // create JWT for foundUser.
+        let token = createToken(foundUser);
         
-    });
+        //send token to user
+        if(!token) return res.status(500).json({ message: err })
+        else return res.status(200).json({ message: "login successful", token})
+        });
+
 };
